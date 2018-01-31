@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "518255406249",
+    "firebase_url": "https://saludyv-127ef.firebaseio.com",
+    "project_id": "saludyv-127ef",
+    "storage_bucket": "saludyv-127ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518255406249:android:0a6a75eceb311b72",
+        "android_client_info": {
+          "package_name": "com.chemapeva.saludyvida"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518255406249-a9evft2cv00fu4u1ifma95mnorqdubud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD1V-xbozJiF-dMBQI2s3WK201T_4GSY0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

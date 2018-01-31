@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mnu_Editar"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Mi perfil" />
+        <item
+            android:id="@+id/mnu_comp"
+            android:icon="@mipmap/lo"
+            android:title="Comprar Menus" />
+        <item
+            android:id="@+id/mnu_sitios"
+            android:icon="@android:drawable/ic_search_category_default"
+            android:title="Buscar Sitios " />
+        <item
+            android:id="@+id/mnuListarfacturas"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="Facturas" />
+
+        <item
+            android:id="@+id/mnuChat"
+            android:icon="@android:drawable/ic_menu_help"
+            android:title="Preguntas frecuentes" />
+        <item
+            android:id="@+id/mnuCerrar"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Cerrar Sesion" />
+
+    </group>
+
+</menu>

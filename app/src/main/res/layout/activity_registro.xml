@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/t"
+    tools:context="@drawable/mujer"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <EditText
+        android:id="@+id/txtNombres"
+        android:layout_width="258dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="Nombres"
+        android:inputType="textPersonName"
+        android:textColor="@color/com_facebook_button_background_color_pressed"
+        android:textColorHint="@color/com_facebook_button_background_color_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002" />
+
+    <EditText
+        android:id="@+id/txtCedulaCli"
+        android:layout_width="259dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Cedula"
+        android:inputType="textPersonName"
+        android:textColor="@color/com_facebook_button_background_color_pressed"
+        android:textColorHint="@color/com_facebook_button_background_color_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.128" />
+
+    <EditText
+        android:id="@+id/txtCorreo"
+        android:layout_width="315dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:hint="Correo electronico"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/com_facebook_button_background_color_pressed"
+        android:textColorHint="@color/com_facebook_button_background_color_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <EditText
+        android:id="@+id/txtUsuario"
+        android:layout_width="138dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="textPersonName"
+        android:textColor="@color/com_facebook_button_background_color_pressed"
+        android:textColorHint="@color/com_facebook_button_background_color_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="367dp"
+        tools:layout_editor_absoluteX="367dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <in.anshul.libray.PasswordEditText
+        android:id="@+id/txtContrasena"
+        android:layout_width="231dp"
+        android:layout_height="50dp"
+        android:hint="Contraseña"
+
+
+        android:textColor="@color/com_facebook_button_background_color_pressed"
+        android:textColorHint="@color/com_facebook_button_background_color_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674"
+        app:password_visible="false" />
+
+    <in.anshul.libray.PasswordEditText
+        android:id="@+id/txtRecon"
+        android:layout_width="231dp"
+        android:layout_height="53dp"
+        android:hint="Repetir Contraseña"
+
+
+        android:textColor="@color/com_facebook_button_background_color_pressed"
+        android:textColorHint="@color/com_facebook_button_background_color_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.825"
+        app:password_visible="false" />
+
+
+    <Button
+        android:id="@+id/btnRegi"
+        android:layout_width="260dp"
+        android:layout_height="48dp"
+        android:background="@color/com_facebook_button_send_background_color"
+        android:text="Siguiente"
+        android:textColor="@color/com_facebook_button_login_silver_background_color"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.986" />
+
+    <EditText
+        android:id="@+id/txtFechaNacimiento"
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Fecha Nacimiento dd/mm/aaaa"
+        android:inputType="date"
+        android:textColorHint="@color/com_facebook_button_background_color_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.268" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">SaludYVida</string>
+    <string name="title_activity_mapa_gim">mapa_gim</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_mapsfym">Map</string>
+    <string name="title_activity_maps_comida">MapsComida</string>
+    <string name="text_subrayado"><u>Entrar</u></string>
+    <string name="olv_contrasena"><u>¿Olvidaste tu usuario o contraseña?</u></string>
+    <string name="title_activity_recuperacion_contra">RecuperacionContra</string>
+    <string name="facebook_app_id">1700300870008876</string>
+    <string name="fb_login_protocol_scheme">fb1700300870008876</string>
+    <string name="pulsame">¡Púlsame!</string>
+    <string name="mensajebarra">Nueva notificación disponible</string>
+    <string name="titulo">Título de la notificación</string>
+    <string name="descripcion">Hello World!! Este es el mensaje de la notificación</string>
+    <string name="desdeNoti">Desde notificación</string>
+    <string name="msj_error_clienrest">El usuario ingresado no existe.</string>
+    <string name="msj_error_clienrest_formato">Error en interpretación de resultado, posibles problemas con el servidor.</string>
+    <string name="msj_confirmacion">Mensaje de confirmación</string>
+    <string name="msj_informacion">Su carrito esta vacio</string>
+    <string name="msj_pedido">Confirmar pedido</string>
+    <string name="editar">Editar</string>
+    <string name="msj_pregunta_salir">¿Esta seguro que desea salir de la aplicación?</string>
+    <string name="lbl_aceptar">Aceptar</string>
+    <string name="title_activity_cliente">ClienteActivity</string>
+    <string name="title_activity_seleccion">activity_seleccion</string>
+</resources>

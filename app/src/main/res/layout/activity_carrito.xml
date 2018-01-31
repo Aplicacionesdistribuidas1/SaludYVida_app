@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chemapeva.saludyvida.CarritoActivity">
+
+    <TextView
+        android:id="@+id/txtCarrito"
+        android:layout_width="256dp"
+        android:layout_height="31dp"
+        android:layout_alignEnd="@+id/lvCarrito"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/lvCarrito"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="13dp"
+        android:text="Informacion de tu compra"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ListView
+        android:id="@+id/lvCarrito"
+        android:layout_width="355dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/txtCarrito"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lblIva"
+        android:layout_alignLeft="@+id/lvCarrito"
+        android:layout_alignStart="@+id/lvCarrito"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:text="Subtotal:" />
+
+    <TextView
+        android:id="@+id/lblIva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lblTotal"
+        android:layout_alignLeft="@+id/lblSubtotal"
+        android:layout_alignStart="@+id/lblSubtotal"
+        android:layout_marginBottom="16dp"
+        android:text="Iva:" />
+
+    <TextView
+        android:id="@+id/lblTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblIva"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/lblIva"
+        android:layout_marginBottom="28dp"
+        android:text="Total:" />
+
+    <TextView
+        android:id="@+id/txtSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblSubtotal"
+        android:layout_marginLeft="51dp"
+        android:layout_marginStart="51dp"
+        android:layout_toEndOf="@+id/lblSubtotal"
+        android:layout_toRightOf="@+id/lblSubtotal" />
+
+    <TextView
+        android:id="@+id/txtIva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtSubtotal"
+        android:layout_alignRight="@+id/txtSubtotal"
+        android:layout_alignTop="@+id/lblIva" />
+
+    <TextView
+        android:id="@+id/txtTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtIva"
+        android:layout_alignRight="@+id/txtIva"
+        android:layout_alignTop="@+id/lblTotal" />
+</RelativeLayout>

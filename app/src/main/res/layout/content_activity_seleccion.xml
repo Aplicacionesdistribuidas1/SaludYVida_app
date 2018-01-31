@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/r"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.chemapeva.saludyvida.activity_seleccion"
+    tools:showIn="@layout/app_bar_activity_seleccion">
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="238dp"
+        android:layout_height="59dp"
+        android:background="@drawable/ays"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="368dp"
+        android:layout_height="169dp"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:text="Salud y vida es una aplicacion la cual nos permitira comprar menus saludables para la correcta alimentacion de cada persona, ademas permitira encontrar lugares como gimnasios y  nutricionistas."
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.327" />
+</android.support.constraint.ConstraintLayout>
