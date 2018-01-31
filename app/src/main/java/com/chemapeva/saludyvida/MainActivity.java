@@ -2,7 +2,9 @@ package com.chemapeva.saludyvida;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -41,6 +43,7 @@ public class MainActivity extends Activity implements OnTaskCompleted {
     private String username;
     private String password;
     private String cod,co,us,no;
+    private boolean estado=false;
     private static final int SOLICITUD_EMPLEADO = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +112,7 @@ public class MainActivity extends Activity implements OnTaskCompleted {
         i.putExtra("correo",co+"");
 
         //i.putExtra("",)
-        //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
         finish();
         Log.d("Peche","Principal");
@@ -123,13 +126,16 @@ public class MainActivity extends Activity implements OnTaskCompleted {
                 if(result!=null){
                     try {
                         Cliente cli =  ClienteRest.getResult(result, Cliente.class);
-                        Util.showMensaje(this, cli.toString());
+                       // Util.showMensaje(this, cli.toString());
                         if(cli.getUsuario().equalsIgnoreCase(username)&&cli.getContrasena().equalsIgnoreCase(password)){
                             cod=cli.getCodigo().toString();
                             no=cli.getNombres();
                             co=cli.getEmail();
                             us=cli.getUsuario();
+                            estado=true;
+                            guardarEstado();
                             goMainScreen();
+
                         }else{
                             Toast.makeText(MainActivity.this, "Nombre de usuario o contrasena incorrecta", Toast.LENGTH_LONG).show();
                         }
@@ -142,6 +148,11 @@ public class MainActivity extends Activity implements OnTaskCompleted {
             default:
                 break;
         }
+    }
+    public void guardarEstado() {
+        SharedPreferences preferences = getSharedPreferences("Sesion", Context.MODE_PRIVATE);
+        preferences.edit().putBoolean("iniciado", estado).apply();
+
     }
 }
 

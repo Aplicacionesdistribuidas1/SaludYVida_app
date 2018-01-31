@@ -178,7 +178,6 @@ public class MostrarCarritoActivity extends AppCompatActivity {
         TextView tvTotalca;
 
 
-
         public ImagenAdapter(Context applicationContext) {
             ctx = applicationContext;
             //    this.pro=pr;
@@ -277,6 +276,7 @@ public class MostrarCarritoActivity extends AppCompatActivity {
                 if(m.get(i).getCantidad()==0){
                     m.remove(i);
                     notifyDataSetChanged();
+
                 }
                 tvCantidad.setText(m.get(i).getCantidad() + "");
                 notifyDataSetChanged();

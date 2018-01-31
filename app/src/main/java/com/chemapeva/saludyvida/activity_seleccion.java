@@ -86,11 +86,14 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
+        name=(TextView)findViewById(R.id.txtNombrePerfil);
+        email=(TextView)findViewById(R.id.txtCorreoPerfil);
+        imagen=(ImageView) findViewById(R.id.imgPerfil);
         int id = item.getItemId();
 
         if (id == R.id.mnu_comp) {
             // Handle the camera action
+
             Intent i = new Intent(activity_seleccion.this, Mostrar_Menu_Activity.class);
            Log.d("activity_seleccion","Usuaio:"+username+" correo: "+correo+" codigo: "+ codigo);
             i.putExtra("username", username+"");
@@ -104,6 +107,7 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
             Intent i = new Intent(activity_seleccion.this, Actividad_EditarCliente.class);
             i.putExtra("username", username+"");
             i.putExtra("correo",correo+"");
+            i.putExtra("nombres",nombre+"");
             startActivity(i);
 
         } else if (id == R.id.mnuChat) {
@@ -181,9 +185,7 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
     }
 
     public void ValidarFacebook(){
-        name=(TextView)findViewById(R.id.txtNombrePerfil);
-        email=(TextView)findViewById(R.id.txtCorreoPerfil);
-        imagen=(ImageView) findViewById(R.id.imgPerfil);
+
         // guardarEstado();
         if (AccessToken.getCurrentAccessToken() == null) {
            // us = getIntent().getExtras().getString("Usuario");
@@ -195,9 +197,9 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
             correo=profile.getName();
            // codigo=getIntent().getExtras().getString("codigo");
             //nombre=getIntent().getExtras().getString("nombre");
-//            name.setText(username);
-  //          email.setText(correo);
-    //        imagen.setImageURI(profile.getProfilePictureUri(100,100));
+            //name.setText(username);
+            //email.setText(correo);
+            //imagen.setImageURI(profile.getProfilePictureUri(100,100));
             Log.d("activity_seleccion","ha ingresado"+username+" "+correo);
         } else {
             Log.d("activity_seleccion","no ingresa x fb");
@@ -205,7 +207,8 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
             correo=getIntent().getExtras().getString("correo");
             codigo=getIntent().getExtras().getString("codigo");
             nombre=getIntent().getExtras().getString("nombres");
-      //      name.setText(username);
+           // name.setText(username);
+            //email.setText(correo);
         }
     }
     private void goLoginScreen() {

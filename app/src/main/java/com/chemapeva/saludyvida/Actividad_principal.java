@@ -107,6 +107,7 @@ public class Actividad_principal extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(Actividad_principal.this, ClienteActivity.class);
                 startActivity(i);
+                finish();
             }
         });
         log.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +115,7 @@ public class Actividad_principal extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(Actividad_principal.this, MainActivity.class);
                 startActivity(i);
+                finish();
             }
         });
         // recuperar();
