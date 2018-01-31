@@ -47,8 +47,6 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         ValidarFacebook();
     }
 
@@ -94,24 +92,24 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
         if (id == R.id.mnu_comp) {
             // Handle the camera action
             Intent i = new Intent(activity_seleccion.this, Mostrar_Menu_Activity.class);
-            i.putExtra("username", username);
-            i.putExtra("correo",correo);
-            i.putExtra("codigo",codigo);
+           Log.d("activity_seleccion","Usuaio:"+username+" correo: "+correo+" codigo: "+ codigo);
+            i.putExtra("username", username+"");
+            i.putExtra("correo",correo+"");
+            i.putExtra("codigo",codigo+"");
             startActivity(i);
         } else if (id == R.id.mnu_sitios) {
             Intent i = new Intent(activity_seleccion.this, Login.class);
             startActivity(i);
         } else if (id == R.id.mnu_Editar) {
             Intent i = new Intent(activity_seleccion.this, Actividad_EditarCliente.class);
-            i.putExtra("username", username);
-            i.putExtra("correo",correo);
-
+            i.putExtra("username", username+"");
+            i.putExtra("correo",correo+"");
             startActivity(i);
 
         } else if (id == R.id.mnuChat) {
             Intent i=new Intent(activity_seleccion.this,Chat.class);
             startActivity(i);
-            i.putExtra("username", username);
+            i.putExtra("username", username+"");
 
         } else if (id == R.id.mnuListarfacturas) {
 

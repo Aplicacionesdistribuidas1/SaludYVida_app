@@ -62,6 +62,7 @@ public class MostrarCarritoActivity extends AppCompatActivity {
         username=getIntent().getExtras().getString("usuario");
         correo=getIntent().getExtras().getString("correo");
         co=getIntent().getExtras().getString("codigo");
+        realizarp=(Button) findViewById(R.id.btnRealizarPedido);
         m = (ArrayList<com.chemapeva.saludyvida.Modelo.Menu>) getIntent().getSerializableExtra("miLista");
         for(int i=0;i<m.size();i++){
         tot+=m.get(i).getPrecio();
@@ -153,14 +154,14 @@ public class MostrarCarritoActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent i = new Intent(MostrarCarritoActivity.this, ConfirmarCompraActivity.class);
                                 i.putExtra("miLista", m);
-                                i.putExtra("totsl",tot);
-                                i.putExtra("subtotal",sub);
-                                i.putExtra("iva",iv);
-                                i.putExtra("usuario",username);
-                                i.putExtra("correo",correo);
-                                i.putExtra("codigo",co);
-
+                                i.putExtra("total",tot+"");
+                                i.putExtra("subtotal",sub+"");
+                                i.putExtra("iva",iv+"");
+                                i.putExtra("usuario",username+"");
+                                i.putExtra("correo",correo+"");
+                                i.putExtra("codigo",co+"");
                                 startActivity(i);
+                                finish();
                             }
                         })
                 .show();
@@ -216,7 +217,7 @@ public class MostrarCarritoActivity extends AppCompatActivity {
             tvTotalca = (TextView) view.findViewById(R.id.txtTotalca);
             SumarCantidad = (Button) view.findViewById(R.id.btnSumar);
             RestarCantidad = (Button) view.findViewById(R.id.btnRestar);
-            realizarp=(Button) view.findViewById(R.id.btnRealizarPedido);
+
             String urlfinal = "http://bware.000webhostapp.com/ensaladas/" + imagen.get(position).toString();
             ;
             Rect rect = new Rect(smartImageView.getLeft(), smartImageView.getTop(), smartImageView.getRight(), smartImageView.getBottom());
@@ -269,14 +270,15 @@ public class MostrarCarritoActivity extends AppCompatActivity {
         }
 
         public void disminuirCantidad(int i) {
-            tot-= m.get(i).getPrecio();
-            Log.d("MostrarCarritoActivity","Cantidad actual: "+ m.get(i).getCantidad());
-            m.get(i).setCantidad(m.get(i).getCantidad() - 1);
-            notifyDataSetChanged();
-            tvCantidad.setText(m.get(i).getCantidad() + "");
-            notifyDataSetChanged();
-            if (m.get(i).getCantidad() == 0) {
-                m.remove(i);
+            if (m.get(i).getCantidad() > 0) {
+                tot-= m.get(i).getPrecio();
+                Log.d("MostrarCarritoActivity","Cantidad actual: "+ m.get(i).getCantidad());
+                m.get(i).setCantidad(m.get(i).getCantidad() - 1);
+                if(m.get(i).getCantidad()==0){
+                    m.remove(i);
+                    notifyDataSetChanged();
+                }
+                tvCantidad.setText(m.get(i).getCantidad() + "");
                 notifyDataSetChanged();
             }
         }

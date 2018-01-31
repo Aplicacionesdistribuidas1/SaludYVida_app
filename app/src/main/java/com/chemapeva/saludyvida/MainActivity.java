@@ -40,6 +40,7 @@ public class MainActivity extends Activity implements OnTaskCompleted {
     private TextView log;
     private String username;
     private String password;
+    private String cod,co,us,no;
     private static final int SOLICITUD_EMPLEADO = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,17 +100,16 @@ public class MainActivity extends Activity implements OnTaskCompleted {
             e.printStackTrace();
         }
     }
-    private void goMainScreen(int cod,String no, String us,String em){
+    private void goMainScreen(){
 
-
-        String username = user.getText().toString();
         Intent i = new Intent(MainActivity.this,activity_seleccion.class);
-        i.putExtra("usuario",us);
-        i.putExtra("codigo",cod);
-        i.putExtra("email",em);
-        i.putExtra("nombres",no);
+        i.putExtra("codigo",cod+"");
+        i.putExtra("nombres",no+"");
+        i.putExtra("usuario",us+"");
+        i.putExtra("correo",co+"");
+
         //i.putExtra("",)
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
         finish();
         Log.d("Peche","Principal");
@@ -123,9 +123,13 @@ public class MainActivity extends Activity implements OnTaskCompleted {
                 if(result!=null){
                     try {
                         Cliente cli =  ClienteRest.getResult(result, Cliente.class);
-                        //Util.showMensaje(this, cli.toString());
+                        Util.showMensaje(this, cli.toString());
                         if(cli.getUsuario().equalsIgnoreCase(username)&&cli.getContrasena().equalsIgnoreCase(password)){
-                            goMainScreen(cli.getCodigo(),cli.getNombres(),cli.getUsuario(),cli.getEmail());
+                            cod=cli.getCodigo().toString();
+                            no=cli.getNombres();
+                            co=cli.getEmail();
+                            us=cli.getUsuario();
+                            goMainScreen();
                         }else{
                             Toast.makeText(MainActivity.this, "Nombre de usuario o contrasena incorrecta", Toast.LENGTH_LONG).show();
                         }

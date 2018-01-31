@@ -75,9 +75,9 @@ public class Mostrar_Menu_Activity extends AppCompatActivity implements OnTaskCo
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.mnu_carrito:
-                if (AccessToken.getCurrentAccessToken() != null) {
+               // if (AccessToken.getCurrentAccessToken() != null) {
                     irCarrito();
-                }
+                //}
         }
         return true;
     }
@@ -266,9 +266,9 @@ public class Mostrar_Menu_Activity extends AppCompatActivity implements OnTaskCo
         Log.d("Mostrar_Menu_Activity","Estamos aki");
         Intent i = new Intent(Mostrar_Menu_Activity.this, MostrarCarritoActivity.class);
         i.putExtra("miLista", men);
-        i.putExtra("usuario",username);
-        i.putExtra("codigo",co);
-        i.putExtra("correo",correo);
+        i.putExtra("usuario",username+"");
+        i.putExtra("codigo",co+"");
+        i.putExtra("correo",correo+"");
         startActivity(i);
     }
         /*
