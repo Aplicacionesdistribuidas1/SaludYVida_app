@@ -40,7 +40,7 @@ import cz.msebera.android.httpclient.Header;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
-public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskCompleted {
+public class MostrarCarritoActivity extends AppCompatActivity {
     private ListView listview;
     private TextView Total;
     private TextView Subtotal;
@@ -99,6 +99,7 @@ public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskC
         getMenuInflater().inflate(R.menu.menu_mostrar_carrito, menu);
         return true;
     }
+    /*
     @Override
     public void onTaskCompleted(int idSolicitud, String result) {
         switch (idSolicitud) {
@@ -109,16 +110,7 @@ public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskC
                         Log.d("MostrarCarritoActivity","Respuesta"+res.getCodigo());
                        // Util.showMensaje(this, res.getMensaje());
                         //if (res.getCodigo() == 1) {
-                            Intent i = new Intent(MostrarCarritoActivity.this, ConfirmarCompraActivity.class);
-                            i.putExtra("miLista", m);
-                            i.putExtra("total", tot + "");
-                            i.putExtra("subtotal", sub + "");
-                            i.putExtra("iva", iv + "");
-                            i.putExtra("usuario", username + "");
-                            i.putExtra("correo", correo + "");
-                            i.putExtra("codigo", co + "");
 
-                            startActivity(i);
                             finish();
                         //}
                     } catch (Exception e) {
@@ -131,7 +123,7 @@ public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskC
             default:
                 break;
         }
-    }
+    }*/
     private void descargarImagen() {
         titulo.clear();
         imagen.clear();
@@ -195,8 +187,17 @@ public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskC
                         new DialogInterface.OnClickListener() {//un listener que al pulsar, solicite el WS de Transsaccion
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(MostrarCarritoActivity.this, ConfirmarCompraActivity.class);
+                                i.putExtra("miLista", m);
+                                i.putExtra("total", tot + "");
+                                i.putExtra("subtotal", sub + "");
+                                i.putExtra("iva", iv + "");
+                                i.putExtra("usuario", username + "");
+                                i.putExtra("correo", correo + "");
+                                i.putExtra("codigo", co + "");
 
-                                GuardarDetalles();
+                                startActivity(i);
+
                             }
                         })
                 .show();
@@ -316,7 +317,7 @@ public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskC
                 notifyDataSetChanged();
             }
         }
-
+/*
     public void GuardarDetalles() {
         try {
             String URL = Util.URL_SRV + "cabecera/guardar";
@@ -346,5 +347,5 @@ public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskC
         }catch(Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
 }
