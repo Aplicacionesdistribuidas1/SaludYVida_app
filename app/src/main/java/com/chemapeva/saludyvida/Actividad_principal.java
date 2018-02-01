@@ -24,9 +24,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-/**
- * Created by crist on 23/05/2017.
- */
+
 
 
 public class Actividad_principal extends Activity {

@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class Util {
 
     //URL del Sitio Web primario de los WS para la aplicacion
-    public static final String URL_SRV = "http://192.168.0.101:8080/marketbit1/srv/";
+    public static final String URL_SRV = "http://saludyvida.cristiantimbi.info/marketbit1/srv/";
 
     /**
      * Permite mostrar un mensaje Toast en pantalla,

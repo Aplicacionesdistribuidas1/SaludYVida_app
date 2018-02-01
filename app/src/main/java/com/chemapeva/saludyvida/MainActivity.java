@@ -133,7 +133,7 @@ public class MainActivity extends Activity implements OnTaskCompleted {
                             co=cli.getEmail();
                             us=cli.getUsuario();
                             estado=true;
-                            guardarEstado();
+                            //guardarEstado();
                             goMainScreen();
 
                         }else{

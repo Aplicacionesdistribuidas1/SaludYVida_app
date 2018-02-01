@@ -105,7 +105,7 @@ public class activity_seleccion extends AppCompatActivity implements NavigationV
             startActivity(i);
         } else if (id == R.id.mnu_Editar) {
             Intent i = new Intent(activity_seleccion.this, Actividad_EditarCliente.class);
-            i.putExtra("username", username+"");
+            i.putExtra("usuario", username+"");
             i.putExtra("correo",correo+"");
             i.putExtra("nombres",nombre+"");
             startActivity(i);

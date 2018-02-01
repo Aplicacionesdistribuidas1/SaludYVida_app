@@ -18,7 +18,15 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.chemapeva.saludyvida.Modelo.Cliente;
+import com.chemapeva.saludyvida.Modelo.FacCabecera;
+import com.chemapeva.saludyvida.Modelo.FacturaDetalle;
+import com.chemapeva.saludyvida.Modelo.Respuesta;
+import com.chemapeva.saludyvida.utilidades.ClienteRest;
+import com.chemapeva.saludyvida.utilidades.OnTaskCompleted;
+import com.chemapeva.saludyvida.utilidades.Util;
 import com.github.snowdream.android.widget.SmartImageView;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -26,12 +34,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
-public class MostrarCarritoActivity extends AppCompatActivity {
+public class MostrarCarritoActivity extends AppCompatActivity implements OnTaskCompleted {
     private ListView listview;
     private TextView Total;
     private TextView Subtotal;
@@ -45,11 +54,12 @@ public class MostrarCarritoActivity extends AppCompatActivity {
     ArrayList cantidad = new ArrayList();
     ArrayList precio = new ArrayList();
     ArrayList<com.chemapeva.saludyvida.Modelo.Menu> m = new ArrayList<>();
-    private String username,correo,co;
+    private String username, correo, co;
     private Double tot = 0.00;
     private Double sub = 0.00;
     private Double iv = 0.00;
 
+    private static final int SOLICITUD_GUARDAR_FACTURA = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,19 +69,19 @@ public class MostrarCarritoActivity extends AppCompatActivity {
         Total = (TextView) findViewById(R.id.txtTotalCarrito);
         Iva = (TextView) findViewById(R.id.txtIvaCarrito);
         descargarImagen();
-        username=getIntent().getExtras().getString("usuario");
-        correo=getIntent().getExtras().getString("correo");
-        co=getIntent().getExtras().getString("codigo");
-        realizarp=(Button) findViewById(R.id.btnRealizarPedido);
+        username = getIntent().getExtras().getString("usuario");
+        correo = getIntent().getExtras().getString("correo");
+        co = getIntent().getExtras().getString("codigo");
+        realizarp = (Button) findViewById(R.id.btnRealizarPedido);
         m = (ArrayList<com.chemapeva.saludyvida.Modelo.Menu>) getIntent().getSerializableExtra("miLista");
-        for(int i=0;i<m.size();i++){
-        tot+=m.get(i).getPrecio();
+        for (int i = 0; i < m.size(); i++) {
+            tot += m.get(i).getPrecio();
         }
-        iv=tot*0.12;
-        sub=tot-iv;
-        Total.setText("$: "+tot);
-        Subtotal.setText("$: "+sub);
-        Iva.setText("$: "+ iv);
+        iv = tot * 0.12;
+        sub = tot - iv;
+        Total.setText("$: " + tot);
+        Subtotal.setText("$: " + sub);
+        Iva.setText("$: " + iv);
 
         if (m.isEmpty()) {
             mostrarMensaje();
@@ -89,7 +99,39 @@ public class MostrarCarritoActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_mostrar_carrito, menu);
         return true;
     }
+    @Override
+    public void onTaskCompleted(int idSolicitud, String result) {
+        switch (idSolicitud) {
+            case SOLICITUD_GUARDAR_FACTURA:
+                if (result != null) {
+                    try {
+                        Respuesta res = ClienteRest.getResult(result, Respuesta.class);
+                        Log.d("MostrarCarritoActivity","Respuesta"+res.getCodigo());
+                       // Util.showMensaje(this, res.getMensaje());
+                        //if (res.getCodigo() == 1) {
+                            Intent i = new Intent(MostrarCarritoActivity.this, ConfirmarCompraActivity.class);
+                            i.putExtra("miLista", m);
+                            i.putExtra("total", tot + "");
+                            i.putExtra("subtotal", sub + "");
+                            i.putExtra("iva", iv + "");
+                            i.putExtra("usuario", username + "");
+                            i.putExtra("correo", correo + "");
+                            i.putExtra("codigo", co + "");
 
+                            startActivity(i);
+                            finish();
+                        //}
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Util.showMensaje(this, R.string.msj_error_clienrest_formato);
+                    }
+                } else
+                    Util.showMensaje(this, R.string.msj_error_clienrest);
+                break;
+            default:
+                break;
+        }
+    }
     private void descargarImagen() {
         titulo.clear();
         imagen.clear();
@@ -142,6 +184,7 @@ public class MostrarCarritoActivity extends AppCompatActivity {
                         })
                 .show();
     }
+
     private void confirmarCompra() {
         String pregunta = "¿Esta seguro de realizar su pedido?";
         new AlertDialog.Builder(this)
@@ -152,16 +195,8 @@ public class MostrarCarritoActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {//un listener que al pulsar, solicite el WS de Transsaccion
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent i = new Intent(MostrarCarritoActivity.this, ConfirmarCompraActivity.class);
-                                i.putExtra("miLista", m);
-                                i.putExtra("total",tot+"");
-                                i.putExtra("subtotal",sub+"");
-                                i.putExtra("iva",iv+"");
-                                i.putExtra("usuario",username+"");
-                                i.putExtra("correo",correo+"");
-                                i.putExtra("codigo",co+"");
-                                startActivity(i);
-                                finish();
+
+                                GuardarDetalles();
                             }
                         })
                 .show();
@@ -222,7 +257,7 @@ public class MostrarCarritoActivity extends AppCompatActivity {
             Rect rect = new Rect(smartImageView.getLeft(), smartImageView.getTop(), smartImageView.getRight(), smartImageView.getBottom());
             smartImageView.setImageUrl(urlfinal, rect);
             tvPrecio.setText("$" + m.get(position).getPrecio());
-            tvCantidad.setText(m.get(position).getCantidad()+"");
+            tvCantidad.setText(m.get(position).getCantidad() + "");
 
             SumarCantidad.setOnClickListener(new View.OnClickListener() {
 
@@ -242,7 +277,7 @@ public class MostrarCarritoActivity extends AppCompatActivity {
             realizarp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    confirmarCompra();
+                   confirmarCompra();
 
                 }
             });
@@ -255,8 +290,8 @@ public class MostrarCarritoActivity extends AppCompatActivity {
             // if(idmenu==m.get(idmenu).getCodigo()){
             // tot+=m.get(i).getPrecio();
             m.get(i).setCantidad(m.get(i).getCantidad() + 1);
-            Log.d("MostrarCarritoActivity","posicion en el array: " + i +"Cantidad actual: "+ m.get(i).getCantidad());
-           // Log.d("MostrarCarritoActivity", "posicion en el array: " + i);
+            Log.d("MostrarCarritoActivity", "posicion en el array: " + i + "Cantidad actual: " + m.get(i).getCantidad());
+            // Log.d("MostrarCarritoActivity", "posicion en el array: " + i);
             tvCantidad.setText(m.get(i).getCantidad() + "");
             tvPrecio.setText("$:" + m.get(i).getPrecio());
             notifyDataSetChanged();
@@ -269,18 +304,47 @@ public class MostrarCarritoActivity extends AppCompatActivity {
         }
 
         public void disminuirCantidad(int i) {
-            if (m.get(i).getCantidad() > 0) {
-                tot-= m.get(i).getPrecio();
-                Log.d("MostrarCarritoActivity","Cantidad actual: "+ m.get(i).getCantidad());
+            if (m.get(i).getCantidad() >= 1) {
+                tot -= m.get(i).getPrecio();
+                Log.d("MostrarCarritoActivity", "Cantidad actual: " + m.get(i).getCantidad());
                 m.get(i).setCantidad(m.get(i).getCantidad() - 1);
-                if(m.get(i).getCantidad()==0){
+            }else{
                     m.remove(i);
                     notifyDataSetChanged();
-
                 }
                 tvCantidad.setText(m.get(i).getCantidad() + "");
                 notifyDataSetChanged();
             }
+        }
+
+    public void GuardarDetalles() {
+        try {
+            String URL = Util.URL_SRV + "cabecera/guardar";
+            ClienteRest clienteRest = new ClienteRest(this);
+            java.util.Date fecha = new Date();
+            FacCabecera fc = new FacCabecera();
+            Cliente cli = new Cliente();
+            cli.setCodigo(Integer.parseInt(co));  //debe ir el de la sesion
+            fc.setCliente(cli);
+            fc.setFechaEmision(fecha);
+            fc.setNumero_factura((int) (Math.random() * 100000) + 1);
+            fc.setTotal(tot);
+            fc.setIva(iv);
+            fc.setSubtotal(sub);
+
+            for (com.chemapeva.saludyvida.Modelo.Menu me : m) {
+
+                FacturaDetalle fd = new FacturaDetalle();
+                fd.setCantidad(me.getCantidad());
+                fd.setSubtotal(me.getPrecio() * me.getCantidad());
+                com.chemapeva.saludyvida.Modelo.Menu mnu = new com.chemapeva.saludyvida.Modelo.Menu();  //el entity
+                mnu.setCodigo(me.getCodigo());
+                fd.setMenu(mnu);
+                fc.addDetalle(fd);
+            }
+            clienteRest.doPost(URL, fc, SOLICITUD_GUARDAR_FACTURA, true);
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

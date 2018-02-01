@@ -117,10 +117,7 @@ public class Recuperacion2 extends Activity {
                         // intent.putExtra("username", username);
                         Recuperacion2.this.finish();
                     }else{
-                        //Intent intent = new Intent(Recuperacion2.this,Registro.class);
-                        //startActivity(intent);
-                        // intent.putExtra("username", username);
-                        //Recuperacion2.this.finish();
+                       
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "No se pueden recuperar los datos del servidor", Toast.LENGTH_LONG).show();

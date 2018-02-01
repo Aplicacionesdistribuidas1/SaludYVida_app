@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registro" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
         <activity
@@ -87,7 +86,7 @@
         <activity android:name=".MostrarCarritoActivity" />
         <activity android:name=".Actividad_EditarCliente" />
         <activity android:name=".ConfirmarCompraActivity" />
-        <activity android:name=".Editar"></activity>
+        <activity android:name=".Editar" />
     </application>
 
 </manifest>

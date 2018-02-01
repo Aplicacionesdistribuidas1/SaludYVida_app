@@ -117,7 +117,7 @@ public class Mostrar_Menu_Activity extends AppCompatActivity implements OnTaskCo
         progreesdialog.show();
 
         AsyncHttpClient cliente = new AsyncHttpClient();
-        cliente.get("http://192.168.0.101:8080/marketbit1/srv/menus/menus", new AsyncHttpResponseHandler() {
+        cliente.get("http://saludyvida.cristiantimbi.info/marketbit1/srv/menus/menus", new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
